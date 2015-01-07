@@ -1,5 +1,16 @@
-﻿Build started 1/6/2015 7:17:32 PM.
+﻿Build started 1/6/2015 7:20:25 PM.
+     1>Project "Z:\Github Projects\TLSInfect\TLSInfect\TLSInfect.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS- /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt EntryPoint.cpp
+     1>cl : Command line warning D9025: overriding '/sdl' with '/GS-'
+         EntryPoint.cpp
+     1>z:\github projects\tlsinfect\tlsinfect\entrypoint.cpp(16): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(283) : see declaration of 'scanf'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\Github Projects\TLSInfect\Debug\TLSInfect.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"Z:\Github Projects\TLSInfect\Debug\TLSInfect.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Z:\Github Projects\TLSInfect\Debug\TLSInfect.lib" /MACHINE:X86 Debug\EntryPoint.obj
+         TLSInfect.vcxproj -> Z:\Github Projects\TLSInfect\Debug\TLSInfect.exe
+     1>Done Building Project "Z:\Github Projects\TLSInfect\TLSInfect\TLSInfect.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.01
+Time Elapsed 00:00:00.66

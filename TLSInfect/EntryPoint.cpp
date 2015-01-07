@@ -34,11 +34,15 @@ void main(void)
 	PIMAGE_NT_HEADERS pINH = (PIMAGE_NT_HEADERS)((DWORD)pExe + pIDH->e_lfanew);
 
 	// 32 bit
-	if (!pINH->FileHeader.Machine != IMAGE_FILE_MACHINE_I386)
+	if (pINH->FileHeader.Machine != IMAGE_FILE_MACHINE_I386)
 		return;
 
 	// DEP enabled 
 	if (pINH->OptionalHeader.DllCharacteristics & IMAGE_DLLCHARACTERISTICS_NX_COMPAT)
+		return;
+
+	// already has tls
+	if (pINH->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_TLS].Size)
 		return;
 
 	PIMAGE_SECTION_HEADER pISH = IMAGE_FIRST_SECTION(pINH);
