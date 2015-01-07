@@ -1,7 +1,7 @@
 TLSInfect
 =========
 
-Windows 32-bit executable infector
+Infects 32-bit portable executabels through TLS
 
 # Summary:
 	• Infects 32 bit executable files
